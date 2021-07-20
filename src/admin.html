@@ -60,6 +60,8 @@
   }
 </style>
 
+<a class="logout">Log Out</a>
+
 <h1>Add a New Movie</h1>
 
 <div class="message"></div>
@@ -75,6 +77,23 @@
 <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <script>
+
+  const handleIdentityEvent = (user) => {
+    if(user && user.token) {
+      return
+    }
+
+    window.location.pathname = '/login/'
+  }
+
+  window.netlifyIdentity.on('init', handleIdentityEvent)
+  window.netlifyIdentity.on('logout', handleIdentityEvent)
+
+  document.querySelector('.logout').addEventListener('click', (event) => {
+    event.preventDefault()
+    window.netlifyIdentity.logout()
+  })
+
   const handleSubmit = async (event) => {
     event.preventDefault()
 
