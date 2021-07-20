@@ -113,7 +113,7 @@
         poster: data.get('poster'),
       })
     }).then(response => {
-      document.querySelector('.message').innerText = `Response: ${response.statusText}`
+      document.querySelector('.message').innerText = `Response: ${response.status}`
     })
   }
   document.querySelector('#add-movie').addEventListener('submit', handleSubmit)
